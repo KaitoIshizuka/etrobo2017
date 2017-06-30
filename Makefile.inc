@@ -14,6 +14,6 @@ include $(EV3RT_SDK_LIB_DIR)/libcpp-ev3/Makefile
 
 endif
 
-APPL_DIR += $(mkfile_path)app $(mkfile_path)unit
+APPL_DIR += $(mkfile_path)app $(mkfile_path)unit $(mkfile_path)MotorCtrl
 
 # COPTS += -fno-use-cxa-atexit
