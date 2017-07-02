@@ -3,7 +3,8 @@ mkfile_path := $(dir $(lastword $(MAKEFILE_LIST)))
 APPL_COBJS +=
 
 APPL_CXXOBJS += \
-	util.o
+	util.o \
+	WheelCtrl.o
 
 SRCLANG := c++
 
@@ -14,6 +15,6 @@ include $(EV3RT_SDK_LIB_DIR)/libcpp-ev3/Makefile
 
 endif
 
-APPL_DIR += $(mkfile_path)app $(mkfile_path)unit $(mkfile_path)MotorCtrl
+APPL_DIR += $(mkfile_path)app $(mkfile_path)unit
 
-# COPTS += -fno-use-cxa-atexit
+COPTS += -fno-use-cxa-atexit

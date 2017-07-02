@@ -1,15 +1,14 @@
+#include "ev3api.h"
 #include "Motor.h"
 
-using namespace ev3api;
+using ev3api::Motor;
 
-class WheelCntl {
+class WheelCtrl {
   public:
-	Motor WheelCntl();
+	WheelCtrl();
 	void init();
 	void term();
-	bool getBrake(int id);
 	int32_t getCount(int id);
-	int getPWM(int id);
 	void reset();
 	void setBrake(bool status);
 	void setCount(int32_t count, int id);
@@ -19,6 +18,7 @@ class WheelCntl {
 	void stop(int id);
 	void stop();
   private:
+	Motor leftWheel,rightWheel;
 	const int PWM_MAX = 100;
 	const int PWM_MIN = -100;
 };
