@@ -5,7 +5,11 @@ APPL_COBJS +=
 APPL_CXXOBJS += \
 	util.o \
 	WheelCtrl.o \
+<<<<<<< HEAD
 	runStraight.o
+=======
+	ArmMove.o
+>>>>>>> 2959a84138cc4df22d5dc199198acb435f2c1c1a
 
 SRCLANG := c++
 
