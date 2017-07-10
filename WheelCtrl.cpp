@@ -3,7 +3,6 @@
 using ev3api::Motor;
 
 // コンストラクタ
-// ここでright,left モータのインスタンス作成
 WheelCtrl::WheelCtrl():
   leftWheel(PORT_C),rightWheel(PORT_B){
 }
@@ -59,6 +58,11 @@ void WheelCtrl::setCount(int32_t count){
 
 // モータを動かす強さを設定。モータ別セット
 void WheelCtrl::setPWM(int pwm, int id){
+  if (pwm > 100) {
+	pwm = 100;
+  }else if(pwm < -100){
+	pwm = -100;
+  }
    if(id == 0){
 	rightWheel.setPWM(pwm);
   }else if(id == 1){
