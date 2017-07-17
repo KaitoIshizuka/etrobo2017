@@ -9,6 +9,7 @@ APPL_CXXOBJS += \
 	pidCtrl.o \
 	RightAngleDetection.o \
 
+
 SRCLANG := c++
 
 ifdef CONFIG_EV3RT_APPLICATION
