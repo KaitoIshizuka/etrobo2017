@@ -1,7 +1,5 @@
 //いんちょのてすとコメント
 #include "app.h"
-#include "runStraight.h"
-
 #include "util.h"
 #include "Clock.h"
 #include "SonarSensor.h"
@@ -13,9 +11,7 @@
 using namespace ev3api;
 
 
-runStraight runSt;
 SonarSensor sonarSensor(PORT_2);
-WheelCtrl wheelCtrl;
 Clock clock;
 
 void main_task(intptr_t unused){
