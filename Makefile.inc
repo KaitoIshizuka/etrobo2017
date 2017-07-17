@@ -6,8 +6,8 @@ APPL_CXXOBJS += \
 	util.o \
 	WheelCtrl.o \
 	ArmMove.o \
+	pidCtrl.o \
 	RightAngleDetection.o \
-	runStraight.o 
 
 SRCLANG := c++
 
