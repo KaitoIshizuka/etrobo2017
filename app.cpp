@@ -1,4 +1,4 @@
-//いんちょのてすとコメント
+
 #include "app.h"
 #include "util.h"
 #include "Clock.h"
