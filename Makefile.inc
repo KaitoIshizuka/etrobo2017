@@ -8,6 +8,7 @@ APPL_CXXOBJS += \
 	ArmMove.o \
 	pidCtrl.o \
 	RightAngleDetection.o \
+	Tracer.o\
 
 SRCLANG := c++
 
