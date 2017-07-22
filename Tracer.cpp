@@ -3,7 +3,6 @@
 Tracer::Tracer():
 leftWheel(PORT_C),
 rightWheel(PORT_B),
-colorSensor(PORT_3),
 pidctrl(),
 clock(){
 }
@@ -22,9 +21,9 @@ void Tracer::setPwm(int8_t setValue) {
 }
 
 void Tracer::run(int distance){
-  static int run = rightWheel.getCount() + leftWheel.getCount();
-  while(distance >= run){ //走行距離run が 設定距離distance より小さい間
-	run = rightWheel.getCount() + leftWheel.getCount();
+  static int run = (rightWheel.getCount() + leftWheel.getCount())/2;
+  while(1){ 
+	run = (rightWheel.getCount() + leftWheel.getCount())/2;
 	float turn = pidctrl.calcPid();
 	
 	int pwm_l = pwm - turn;
@@ -32,6 +31,10 @@ void Tracer::run(int distance){
 
 	leftWheel.setPWM(pwm_l);
 	rightWheel.setPWM(pwm_R);
+
+	if(distance <= run){//走行距離run が 設定距離distance より小さい間
+	  break;
+	}
 
 	clock.wait(4);
   }
