@@ -1,21 +1,26 @@
 #include "Motor.h"
 #include "ColorSensor.h"
+#include "pidCtrl.h"
 #include "util.h"
+#include "Clock.h"
 
 using namespace ev3api;
 
 class Tracer {
 	public:
 		Tracer();
-		void run();
+		void run(int distance);
 		void init();
 		void terminate();
-		float　alpaca_value();
+		float alpaca_value();
+		void setPwm(int8_t setValue);
 
 	private:
 		Motor leftWheel;
-		MOtor rightWheel;
+		Motor rightWheel;
 		ColorSensor colorSensor;
-		const int8_t pwm = (Motor::PWM_MAX) / 2;
-}
+		pidCtrl pidctrl;
+		Clock clock;
+		int8_t pwm = (Motor::PWM_MAX) / 2;
+};
 
