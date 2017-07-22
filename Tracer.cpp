@@ -21,7 +21,6 @@ void Tracer::setPwm(int8_t setValue) {
 
 void Tracer::run(){
 	float turn = alpaca_value();
-	
 	int pwm_l = pwm - turn;
 	int pwm_R = pwm + turn;
 
