@@ -19,3 +19,86 @@ void msg_f(const char *str, int32_t line) {
   ev3_lcd_fill_rect(0, line * line_height, EV3_LCD_WIDTH, line_height, EV3_LCD_WHITE);
   ev3_lcd_draw_string(str, 0, line * line_height);
 }
+void msg_clear() {
+  for (int i = 0; i < 14; i++) {
+    msg_f("", i);
+  }
+}
+
+void msg_f(int8_t n, int32_t line) {
+  char str[64];
+  sprintf(str, "%d", n);
+  msg_f(str, line);
+}
+
+void msg_f(uint8_t n, int32_t line) {
+  char str[64];
+  sprintf(str, "%d", n);
+  msg_f(str, line);
+}
+
+void msg_f(char n, int32_t line) {
+  char str[64];
+  sprintf(str, "%d", n);
+  msg_f(str, line);
+}
+
+void msg_f(int16_t n, int32_t line) {
+  char str[64];
+  sprintf(str, "%d", n);
+  msg_f(str, line);
+}
+
+void msg_f(uint16_t n, int32_t line) {
+  char str[64];
+  sprintf(str, "%d", n);
+  msg_f(str, line);
+}
+
+void msg_f(int n, int32_t line) {
+  char str[64];
+  sprintf(str, "%d", n);
+  msg_f(str, line);
+}
+
+void msg_f(unsigned int n, int32_t line) {
+  char str[64];
+  sprintf(str, "%d", n);
+  msg_f(str, line);
+}
+
+void msg_f(int32_t n, int32_t line) {
+  char str[64];
+  sprintf(str, "%ld", n);
+  msg_f(str, line);
+}
+
+void msg_f(uint32_t n, int32_t line) {
+  char str[64];
+  sprintf(str, "%ld", n);
+  msg_f(str, line);
+}
+
+void msg_f(int64_t n, int32_t line) {
+  char str[64];
+  sprintf(str, "%lld", n);
+  msg_f(str, line);
+}
+
+void msg_f(uint64_t n, int32_t line) {
+  char str[64];
+  sprintf(str, "%lld", n);
+  msg_f(str, line);
+}
+
+void msg_f(float n, int32_t line) {
+  char str[64];
+  sprintf(str, "%f", n);
+  msg_f(str, line);
+}
+
+void msg_f(double n, int32_t line) {
+  char str[64];
+  sprintf(str, "%lf", n);
+  msg_f(str, line);
+}

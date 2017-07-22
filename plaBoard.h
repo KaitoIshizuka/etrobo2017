@@ -3,15 +3,15 @@
 
 using namespace ev3api;
 
-class plaBord {
+class plaBoard {
 	public:
-		plaBord();
+		plaBoard();
 		void init();
 		void search();
 
 
+
 	private:
-		SonerSensor sonerSensor;
-		int16_t plaDistance = sonerSensor.getDistance();
+		SonarSensor sonarSensor;
 
 };

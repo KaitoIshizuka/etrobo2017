@@ -1,8 +1,7 @@
-
 #include "app.h"
 #include "util.h"
-#include "Clock.h"
-#include "SonarSensor.h"
+#include "plaBoard.h"
+
 
 // 一時的に
 #include <string>
@@ -10,11 +9,11 @@
 
 using namespace ev3api;
 
-
-SonarSensor sonarSensor(PORT_2);
-Clock clock;
+plaBoard plaBoard;
 
 void main_task(intptr_t unused){
+
+	plaBoard.init();
 
   /*
   SonarSensor sonarSensor(PORT_2);
