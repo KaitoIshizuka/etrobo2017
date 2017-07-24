@@ -28,7 +28,7 @@ float pidCtrl::calcPid(){
   i = Ki * integral;
   d = Kd * (diff[1] - diff[0]) / delta_t;
 
-  turn = p+i+d;
+  turn = p + i + d;
 
   //返り値に下限-100,上限100を設定
   if(turn >= 100.0){
