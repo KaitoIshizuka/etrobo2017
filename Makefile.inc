@@ -10,6 +10,7 @@ APPL_CXXOBJS += \
 	RightAngleDetection.o \
 	Tracer.o\
 
+
 SRCLANG := c++
 
 ifdef CONFIG_EV3RT_APPLICATION
