@@ -16,7 +16,7 @@ class pidCtrl {
 	ColorSensor colorSensor;
 	WheelCtrl wheelCtrl;
 	const float delta_t = 0.004;
-	const float Kp = 0.83;
+	const float Kp = 0.63;
 	const float Ki = 0.0;
 	const float Kd = 0.0;
 	int diff[2];
