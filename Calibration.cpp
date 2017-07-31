@@ -1,80 +1,39 @@
 #include "Calibration.h"
 
-pidCtrl::pidCtrl():
-  colorSensor(PORT_2),wheelCtrl(){
-	LineRL = 0;//line の Right 側を走行
-	diff[0]=0,diff[1]=0;
-	integral = 0.0;
-	target_val= 10;
+calibration::calibration():
+  colorSensor(PORT_2){
 }
 
-float pidCtrl::calcPid(){
-  float p,i,d;
-  int color_val = colorSensor.getBrightness();
-  float turn;
+int8_t calibration::run(){
+  int8_t temp[10];
+  int8_t group[10];
+  int8_t braightness;
 
-  diff[0] = diff[1];
-
-  if(LineRL == 0){
-	diff[1] = color_val - target_val;
-  }else if(LineRL == 1){
-	diff[1] = target_val - color_val;
-  }
-	diff[1] = color_val - target_val;
-
-  integral += (diff[0] + diff[1]) / 2.0 * delta_t;
-
-  p = Kp * diff[1];
-  i = Ki * integral;
-  d = Kd * (diff[1] - diff[0]) / delta_t;
-
-  turn = p + i + d;
-
-  //返り値に下限-100,上限100を設定
-  if(turn >= 100.0){
-	turn = 100.0;
-  }else if(turn <= -100.0){
-	turn = -100.0;
+  for(int i=0; i<10; i++){
+	temp[i] = colorSensor.getBrightness();
   }
 
-  return turn;
+  int flg=0;
+  int number_of_group[10]=0;//各groupの要素数を持っとく
+
+  for(int i=0; i<10; i++){//tempの要素数だけ回る
+	for(int j=0; j<=flg; j++){//グループの数だけ回る
+	  if((group[j]-5) > temp[i] && temp[i] < (group[j]-5)){//もし似たグループがあれば
+		//グループの値と光センサの値の一つの平均を取る。
+		group[j] += temp[i];
+		group[j] /= 2;
+		number_of_group[j]++;
+	  }else{
+		//新しいグループを作る。
+		group[j+1] = temp[i]
+		number_of_group[j+1]++;
+		//グループを作ったためそのグループまで探索が及ぶように++
+		flg++; 
+	  }
+	}
+  }
+
+  return braightness;
 }
 
-void pidCtrl::setLineRL(int setRL){
-  LineRL = setRL;
-}
-
-
-float pidCtrl::calcMotorPid(){
-  float p,i,d;
-  float motorR_val = (float)wheelCtrl.getCount(0);
-  float motorL_val = (float)wheelCtrl.getCount(1);
-  float turn;
-
-  diff[0] = diff[1];
-
-  //turn値+なら左に,-なら右に行く
-  if(LineRL == 0){
-	diff[1] = motorR_val - motorL_val;
-  }else if(LineRL == 1){
-	diff[1] = motorL_val - motorR_val;
-  }
-
-  integral += (diff[0] + diff[1]) / 2.0 * delta_t;
-
-  p = Kp * diff[1];
-  i = Ki * integral;
-  d = Kd * (diff[1] - diff[0]) / delta_t;
-
-  turn = p+i+d;
-
-  //返り値に下限-100,上限100を設定
-  if(turn >= 100.0){
-	turn = 100.0;
-  }else if(turn <= -100.0){
-	turn = -100.0;
-  }
-
-  return turn;
-}
 
