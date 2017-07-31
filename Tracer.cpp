@@ -25,15 +25,20 @@ void Tracer::setPwm(int8_t setValue) {
 }
 
 void Tracer::run(int distance){
-  static int run = rightWheel.getCount()/2 + leftWheel.getCount()/2;
-  while(distance >= run){ //走行距離run が 設定距離distance より小さい間
-	run = rightWheel.getCount()/2 + leftWheel.getCount()/2;
+  static int run = (rightWheel.getCount() + leftWheel.getCount())/2;
+  while(1){ 
+	run = (rightWheel.getCount() + leftWheel.getCount())/2;
+
 	float turn = pidctrl.calcPid();
 	int pwm_l = pwm - turn;
 	int pwm_R = pwm + turn;
 
 	leftWheel.setPWM(pwm_l);
 	rightWheel.setPWM(pwm_R);
+
+	if(distance <= run){//走行距離run が 設定距離distance より小さい間
+	  break;
+	}
 
 	clock.wait(4);
   }

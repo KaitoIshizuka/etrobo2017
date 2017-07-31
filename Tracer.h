@@ -1,5 +1,4 @@
 #include "Motor.h"
-#include "ColorSensor.h"
 #include "pidCtrl.h"
 #include "util.h"
 #include "Clock.h"
@@ -18,7 +17,6 @@ class Tracer {
 	private:
 		Motor leftWheel;
 		Motor rightWheel;
-		ColorSensor colorSensor;
 		pidCtrl pidctrl;
 		Clock clock;
 		int8_t pwm = (Motor::PWM_MAX) / 2;

@@ -10,7 +10,7 @@ pidCtrl::pidCtrl():
 
 float pidCtrl::calcPid(){
   float p,i,d;
-  int8_t color_val = colorSensor.getBrightness();
+  int color_val = colorSensor.getBrightness();
   float turn;
 
   diff[0] = diff[1];
@@ -20,6 +20,7 @@ float pidCtrl::calcPid(){
   }else if(LineRL == 1){
 	diff[1] = target_val - color_val;
   }
+	diff[1] = color_val - target_val;
 
   integral += (diff[0] + diff[1]) / 2.0 * delta_t;
 
@@ -27,7 +28,7 @@ float pidCtrl::calcPid(){
   i = Ki * integral;
   d = Kd * (diff[1] - diff[0]) / delta_t;
 
-  turn = p+i+d;
+  turn = p + i + d;
 
   //返り値に下限-100,上限100を設定
   if(turn >= 100.0){
