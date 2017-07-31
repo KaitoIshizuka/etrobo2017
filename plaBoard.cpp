@@ -1,15 +1,17 @@
-#include "plaBord.h"
+#include "plaBoard.h"
 
-plaBord::plaBord():
-	SonerSensor(Port_3),
-	clock(){}
-
-void plaBord::init(){
-	init_f("plaBord");
+plaBoard::plaBoard():
+sonarSensor(PORT_3){
 }
 
-void plaBord::serch(){
-	plaDistance = sonerSensor.getDistance();
 
-	msg_f("plaDistance = ",plaDistance);
+void plaBoard::init(){
+	init_f("plaBoard");
 }
+
+void plaBoard::search(){
+	int16_t plaDistance = sonarSensor.getDistance();
+
+	msg_f(plaDistance,1);
+}
+
