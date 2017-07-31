@@ -1,5 +1,6 @@
 #include "ev3api.h"
 #include "ColorSensor.h"
+#include "util.h"
 
 using ev3api::ColorSensor;
 

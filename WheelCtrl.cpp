@@ -73,8 +73,8 @@ void WheelCtrl::setPWM(int pwm, int id){
 
 // モータを動かす強さを設定。一括セット
 void WheelCtrl::setPWM(int pwm){
-  int right= pwm//右強
-  int left=pwm*1.027//左弱
+  int right= pwm;//右強
+  int left=pwm*1.027;//左弱
 
   if(left > 100){
 	left=100;

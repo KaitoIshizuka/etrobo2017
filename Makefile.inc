@@ -9,6 +9,7 @@ APPL_CXXOBJS += \
 	pidCtrl.o \
 	RightAngleDetection.o \
 	Tracer.o\
+	Calibration.o\
 
 
 SRCLANG := c++
