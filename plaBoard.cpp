@@ -10,8 +10,11 @@ void plaBoard::init(){
 }
 
 void plaBoard::search(){
-	int16_t plaDistance = sonarSensor.getDistance();
+	whiel(1){
+		int16_t plaDistance = sonarSensor.getDistance();
 
-	msg_f(plaDistance,1);
+		msg_f(plaDistance,1);
+	}
+	
 }
 
