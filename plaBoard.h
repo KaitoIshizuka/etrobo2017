@@ -13,5 +13,6 @@ class plaBoard {
 
 	private:
 		SonarSensor sonarSensor;
+		int16_t plaDistance = sonarSensor.getDistance();
 
 };
