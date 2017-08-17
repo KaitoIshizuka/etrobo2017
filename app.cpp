@@ -1,8 +1,8 @@
-
 #include "app.h"
 #include "util.h"
 #include "Tracer.h"
 #include "Calibration.h"
+#include "Clock.h"
 
 // 一時的に
 #include <string>
@@ -12,6 +12,7 @@ using namespace ev3api;
 
 //Tracer tracer;
 Calibration cab;
+Clock clock;
 
 
 
@@ -26,8 +27,10 @@ void main_task(intptr_t unused){
 //  tracer.run(5000);
 //  tracer.terminate();
 
-  cab.calibration();
   cab.run();
+  while(1){
+	clock.wait(4);
+  }
 
   ext_tsk();
 }
