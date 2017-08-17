@@ -10,7 +10,7 @@ APPL_CXXOBJS += \
 	RightAngleDetection.o \
 	Tracer.o\
 	Calibration.o\
-	Hsv.o\
+#	Hsv.o\
 
 
 SRCLANG := c++

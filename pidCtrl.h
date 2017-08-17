@@ -9,6 +9,7 @@ class pidCtrl {
   public:
 	pidCtrl();
 	float calcPid();
+	float calcColorPid();
 	float calcMotorPid();
 	void setLineRL(int setRL);
   private:
@@ -19,10 +20,16 @@ class pidCtrl {
 	const float Kp = 0.63;
 	const float Ki = 0.0;
 	const float Kd = 0.0;
+//	const float Kp_color = 0.04;
+	const float Kp_color = 0.10;
+	const float Ki_color = 0.0;
+	const float Kd_color = 0.0;
 	int diff[2];
+	int diff_color[2];
 	int motor_diff[2];
 	float integral;
 	float motor_integral;
 	unsigned int target_val;
+	unsigned int target_val_color;
 };
 

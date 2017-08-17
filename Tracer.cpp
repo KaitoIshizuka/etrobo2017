@@ -27,7 +27,8 @@ void Tracer::run(int distance){
   while(1){ 
 	run = (rightWheel.getCount() + leftWheel.getCount())/2;
 
-	float turn = pidctrl.calcPid();
+//	float turn = pidctrl.calcPid();
+	float turn = pidctrl.calcColorPid();
 	int pwm_l = pwm - turn;
 	int pwm_R = pwm + turn;
 
