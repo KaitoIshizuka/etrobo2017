@@ -7,7 +7,6 @@ pidCtrl::pidCtrl():
 	diff_color[0]=0,diff_color[1]=0;
 	integral = 0.0;
 	target_val= 10;
-	target_val_color= 350;
 }
 
 float pidCtrl::calcPid(){

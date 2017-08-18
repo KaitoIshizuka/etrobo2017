@@ -14,9 +14,9 @@ class Hsv {
   public:
 	Hsv();
 	void Calc();
-	int& getH();
-	int& getS();
-	int& getV();
+	void getH(int& in);
+	void getS(int& in);
+	void getV(int& in);
   private:
 	ColorSensor colorSensor;
     rgb_raw_t rgbRaw;

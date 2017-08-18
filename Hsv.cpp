@@ -13,8 +13,8 @@ void Hsv::Calc(){
   colorSensor.getRawColor(rgbRaw);
 
   //max min を取得
-  int max = max(max(rgbRaw.r, rgbRaw.g), rgbRaw.b);
-  int min = min(min(rgbRaw.r, rgbRaw.g), rgbRaw.b);
+  int max = std::max(std::max(rgbRaw.r, rgbRaw.g), rgbRaw.b);
+  int min = std::min(std::min(rgbRaw.r, rgbRaw.g), rgbRaw.b);
 
   // hue の計算
   if (max == min) {
@@ -42,7 +42,7 @@ void Hsv::Calc(){
 
 //getter関数
 //変数のアドレス(例: 変数aなら &a)を受け取り,持っているhsv変数でアドレスを辿って変更
-int Hsv::getH(int& in){in =  h;}
-int Hsv::getS(int& in){in =  s;}
-int Hsv::getV(int& in){in =  v;}
+void Hsv::getH(int& in){in =  h;}
+void Hsv::getS(int& in){in =  s;}
+void Hsv::getV(int& in){in =  v;}
 

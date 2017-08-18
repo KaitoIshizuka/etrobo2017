@@ -24,7 +24,7 @@ void main_task(intptr_t unused){
 　  ∟オブジェクトを作る際に内容を初期化する関数
   */
   tracer.init();
-  tracer.setPwm(40);
+  tracer.setPwm(60);
   tracer.run(50000);
   tracer.terminate();
 

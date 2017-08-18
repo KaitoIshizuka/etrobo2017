@@ -32,6 +32,20 @@ void Tracer::run(int distance){
 	int pwm_l = pwm - turn;
 	int pwm_R = pwm + turn;
 
+	/*
+	int rate = 0;
+	if(pwm_l > 100){
+	  rate = pwm_l - 100;
+	  pwm_R = pwm_R - rate;
+	  pwm_l = 100;
+	}
+	if(pwm_R > 100){
+	  rate = pwm_R - 100;
+	  pwm_R = 100;
+	  pwm_l = pwm_l - rate;
+	}
+	*/
+
 	leftWheel.setPWM(pwm_l);
 	rightWheel.setPWM(pwm_R);
 
@@ -39,6 +53,6 @@ void Tracer::run(int distance){
 	  break;
 	}
 
-	clock.wait(4);
+	clock.wait(2);
   }
 }
