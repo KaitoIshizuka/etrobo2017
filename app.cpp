@@ -1,7 +1,7 @@
 #include "app.h"
 #include "util.h"
 #include "plaBoard.h"
-#include "SumouMove.h"
+#include "ItemMove.h"
 
 
 // 一時的に
@@ -11,13 +11,13 @@
 using namespace ev3api;
 
 plaBoard plaBoard;
-SumouMove SM;
+ItemMove IM;
 
 void main_task(intptr_t unused){
 
 	//plaBoard.init();
 
-	SM.run(0);
+	IM.run();
 
   ext_tsk();
 }
