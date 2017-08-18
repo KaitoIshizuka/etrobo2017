@@ -9,6 +9,7 @@ APPL_CXXOBJS += \
 	pidCtrl.o \
 	RightAngleDetection.o \
 	plaBoard.o\
+	SumouMove.o\
 
 
 SRCLANG := c++
