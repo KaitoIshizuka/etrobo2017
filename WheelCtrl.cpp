@@ -64,7 +64,7 @@ void WheelCtrl::setPWM(int pwm, int id){
 	pwm = -100;
   }
    if(id == 0){
-	rightWheel.setPWM(pwm);
+	rightWheel.setPWM(pwm*0.983);
   }else if(id == 1){
 	leftWheel.setPWM(pwm);
   }
@@ -73,7 +73,7 @@ void WheelCtrl::setPWM(int pwm, int id){
 
 // モータを動かす強さを設定。一括セット
 void WheelCtrl::setPWM(int pwm){
-  rightWheel.setPWM(pwm);
+  rightWheel.setPWM(pwm*0.983);
   leftWheel.setPWM(pwm);
 }
 
