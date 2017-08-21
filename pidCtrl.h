@@ -10,6 +10,7 @@ class pidCtrl {
 	pidCtrl();
 	float calcPid();
 	float calcColorPid();
+	float calcColorWalkPid();
 	float calcMotorPid();
 	void setLineRL(int setRL);
   private:
@@ -26,12 +27,17 @@ class pidCtrl {
 	const float Ki_color = 0.1;
 //	const float Kd_color = 0.006;
 	const float Kd_color = 0.003;
+	const float Kp_color_walk = 0.25;
+	const float Ki_color_walk = 0.1;
+	const float Kd_color_walk = 0.00;
 	int diff[2];
 	int diff_color[2];
+	int diff_color_walk[2];
 	int motor_diff[2];
 	float integral;
 	float motor_integral;
-	unsigned int target_val;
-	unsigned int target_val_color = 360;
+	unsigned int target_val = 20;
+//	unsigned int target_val_color = 360; 本番コースで調整した値
+	unsigned int target_val_color = 260;
 };
 

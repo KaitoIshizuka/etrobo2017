@@ -24,10 +24,18 @@ void main_task(intptr_t unused){
 　  ∟オブジェクトを作る際に内容を初期化する関数
   */
   tracer.init();
-  tracer.setPwm(60);
-  tracer.run(50000);
+  tracer.setPwm(10);
+//  tracer.run(14500);
+  tracer.walk(14500);
+/*
+  tracer.setPwm(100);
+  tracer.run(3000);
+  tracer.setPwm(70);
+  tracer.run(12500);
+  tracer.setPwm(100);
+  tracer.run(14500);
+*/
   tracer.terminate();
-
   ext_tsk();
 }
 
