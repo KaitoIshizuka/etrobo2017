@@ -26,8 +26,9 @@ void main_task(intptr_t unused){
 //  tracer.run(5000);
 //  tracer.terminate();
 
-  cab.calibration();
   cab.run();
+
+  while(1){}
 
   ext_tsk();
 }
