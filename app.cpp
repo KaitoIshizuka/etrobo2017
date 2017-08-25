@@ -26,8 +26,10 @@ void main_task(intptr_t unused){
 //  tracer.run(5000);
 //  tracer.terminate();
 
-  cab.run();
+//  cab.getBrightness();
+  cab.getColor();
 
+  msg_f("Fin",1);
   while(1){}
 
   ext_tsk();

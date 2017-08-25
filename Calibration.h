@@ -10,7 +10,8 @@ using ev3api::Clock;
 class Calibration {
   public:
 	Calibration();
-	int8_t run();
+	int8_t getBrightness();
+	int8_t getColor();
   private:
 	ColorSensor colorSensor;
 	TouchSensor touchSensor;
