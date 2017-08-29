@@ -67,9 +67,9 @@ int8_t Calibration::getBrightness(){
 
 
 int8_t Calibration::getColor(){
-  int8_t temp[10]={0};
-  int8_t group[10]={0};
-  int8_t color;
+  int temp[10]={0};
+  int group[10]={0};
+  int color;
   rgb_raw_t rgb;
 
   while(1){//タッチセンサが押されるまで待機
