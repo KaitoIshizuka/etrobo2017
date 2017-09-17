@@ -10,6 +10,7 @@ int8_t Calibration::getBrightness(){
   int8_t group[10]={0};
   int8_t braightness;
 
+
   while(1){//タッチセンサが押されるまで待機
 	clock.wait(20);
 	if(true == touchSensor.isPressed()){break;}
@@ -46,9 +47,6 @@ int8_t Calibration::getBrightness(){
   }
 
 
-  for(i=0; 0 < group[i]; i++){//要素の入ったgroupの要素数だけ回る
-	msg_f(group[i],i+3);
-  }
 
   int8_t soeji_of_maxnumber=0;
   for(k=0; k<=flg; k++){//number_of_groupから各groupの要素数最大の値を返す

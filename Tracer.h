@@ -9,6 +9,8 @@ class Tracer {
 	public:
 		Tracer();
 		void run(int distance);
+		void walk(int distance);
+		void keisoku(int distance);
 		void init();
 		void terminate();
 		float alpaca_value();

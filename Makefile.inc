@@ -14,7 +14,6 @@ APPL_CXXOBJS += \
 	SumouMove.o\
 	ItemMove.o\
 
-
 SRCLANG := c++
 
 ifdef CONFIG_EV3RT_APPLICATION

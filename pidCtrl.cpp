@@ -2,10 +2,10 @@
 
 pidCtrl::pidCtrl():
   colorSensor(PORT_2),wheelCtrl(){
-	LineRL = 0;//line の Right 側を走行
+	LineRL = 0;//0:line の Right 側を走行
 	diff[0]=0,diff[1]=0;
+	diff_color[0]=0,diff_color[1]=0;
 	integral = 0.0;
-	target_val= 10;
 }
 
 float pidCtrl::calcPid(){
@@ -27,6 +27,74 @@ float pidCtrl::calcPid(){
   p = Kp * diff[1];
   i = Ki * integral;
   d = Kd * (diff[1] - diff[0]) / delta_t;
+
+  turn = p + i + d;
+
+  //返り値に下限-100,上限100を設定
+  if(turn >= 100.0){
+	turn = 100.0;
+  }else if(turn <= -100.0){
+	turn = -100.0;
+  }
+
+  return turn;
+}
+
+
+float pidCtrl::calcColorPid(){
+  float p,i,d;
+  rgb_raw_t rgb;
+  colorSensor.getRawColor(rgb);
+  int color_val = rgb.r + rgb.g +rgb.b;
+  float turn;
+
+  diff_color[0] = diff_color[1];
+
+  if(LineRL == 0){
+	diff_color[1] = color_val - target_val_color;
+  }else if(LineRL == 1){
+	diff_color[1] = target_val_color - color_val;
+  }
+
+  integral += (diff_color[0] + diff_color[1]) / 2.0 * delta_t;
+
+  p = Kp_color * diff_color[1];
+  i = Ki_color * integral;
+  d = Kd_color * (diff_color[1] - diff_color[0]) / delta_t;
+
+  turn = p + i + d;
+
+  //返り値に下限-100,上限100を設定
+  if(turn >= 100.0){
+	turn = 100.0;
+  }else if(turn <= -100.0){
+	turn = -100.0;
+  }
+
+  return turn;
+}
+
+
+float pidCtrl::calcColorWalkPid(){
+  float p,i,d;
+  rgb_raw_t rgb;
+  colorSensor.getRawColor(rgb);
+  int color_val = rgb.r + rgb.g +rgb.b;
+  float turn;
+
+  diff_color_walk[0] = diff_color_walk[1];
+
+  if(LineRL == 0){
+	diff_color_walk[1] = color_val - target_val_color;
+  }else if(LineRL == 1){
+	diff_color_walk[1] = target_val_color - color_val;
+  }
+
+  integral += (diff_color_walk[0] + diff_color_walk[1]) / 2.0 * delta_t;
+
+  p = Kp_color_walk * diff_color_walk[1];
+  i = Ki_color_walk * integral;
+  d = Kd_color_walk * (diff_color_walk[1] - diff_color_walk[0]) / delta_t;
 
   turn = p + i + d;
 
