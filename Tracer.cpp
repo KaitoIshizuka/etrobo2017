@@ -5,7 +5,9 @@ Tracer::Tracer():
 leftWheel(PORT_C),
 rightWheel(PORT_B),
 pidctrl(),
-clock(){}
+clock(){
+	
+}
 
 void Tracer::init(){
 	init_f("Tracer");
