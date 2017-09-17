@@ -3,6 +3,8 @@
 #include "Tracer.h"
 #include "Calibration.h"
 #include "Clock.h"
+#include "plaBoard.h"
+#include "ItemMove.h"
 
 // 一時的に
 #include <string>
@@ -12,8 +14,9 @@ using namespace ev3api;
 
 Tracer tracer;
 Clock clock;
-
-
+Calibration cab;
+plaBoard plaBoard;
+ItemMove IM;
 
 void main_task(intptr_t unused){
 
@@ -24,6 +27,9 @@ void main_task(intptr_t unused){
 　  ∟オブジェクトを作る際に内容を初期化する関数
   */
   tracer.init();
+  //  cab.getBrightness();
+  cab.getColor();
+
   tracer.setPwm(10);
 //  tracer.run(14500);
   tracer.walk(14500);
@@ -36,6 +42,12 @@ void main_task(intptr_t unused){
   tracer.run(14500);
 */
   tracer.terminate();
+	//plaBoard.init();
+	//IM.run();
+
+  msg_f("Fin",1);
+  while(1){}
+
   ext_tsk();
 }
 
