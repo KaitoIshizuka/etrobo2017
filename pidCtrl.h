@@ -27,9 +27,12 @@ class pidCtrl {
 	const float Ki_color = 0.1;
 //	const float Kd_color = 0.006;
 	const float Kd_color = 0.003;
-	const float Kp_color_walk = 0.25;
-	const float Ki_color_walk = 0.1;
-	const float Kd_color_walk = 0.00;
+//	const float Kp_color_walk = 0.25;
+//	const float Ki_color_walk = 0.1;
+//	const float Kd_color_walk = 0.00;
+	const float Kp_color_walk = 0.14;
+	const float Ki_color_walk = 0.00;
+	const float Kd_color_walk = 0.005;
 	int diff[2];
 	int diff_color[2];
 	int diff_color_walk[2];
