@@ -1,8 +1,12 @@
 #include "ev3api.h"
 #include "ColorSensor.h"
+#ifndef INCLUDED_WHEELCONTROLL
+#define INCLUDED_WHEELCONTROLL
 #include "WheelCtrl.h"
+#endif
 
-using ev3api::ColorSensor;
+//using ev3api::ColorSensor;
+using namespace ev3api;
 
 class pidCtrl {
 
@@ -13,6 +17,7 @@ class pidCtrl {
 	float calcColorWalkPid();
 	float calcMotorPid();
 	void setLineRL(int setRL);
+	void setCollorTarget(int target);
   private:
 	int LineRL;
 	ColorSensor colorSensor;
@@ -27,12 +32,12 @@ class pidCtrl {
 	const float Ki_color = 0.1;
 //	const float Kd_color = 0.006;
 	const float Kd_color = 0.003;
-//	const float Kp_color_walk = 0.25;
-//	const float Ki_color_walk = 0.1;
-//	const float Kd_color_walk = 0.00;
+//	const float Kp_color_walk = 0.14;
 	const float Kp_color_walk = 0.14;
+//	const float Ki_color_walk = 0.00;
 	const float Ki_color_walk = 0.00;
-	const float Kd_color_walk = 0.005;
+//	const float Kd_color_walk = 0.005;
+	const float Kd_color_walk = 0.000;
 	int diff[2];
 	int diff_color[2];
 	int diff_color_walk[2];

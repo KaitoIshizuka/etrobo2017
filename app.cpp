@@ -5,6 +5,7 @@
 #include "Clock.h"
 #include "plaBoard.h"
 #include "ItemMove.h"
+#include "GetStart.h"
 
 // 一時的に
 #include <string>
@@ -17,6 +18,7 @@ Clock clock;
 Calibration cab;
 plaBoard plaBoard;
 ItemMove IM;
+GetStart getStart;
 
 void main_task(intptr_t unused){
 
@@ -28,9 +30,15 @@ void main_task(intptr_t unused){
   */
   tracer.init();
   //  cab.getBrightness();
-  cab.getColor();
+  int black = cab.ColorCalibration();
+  int white = cab.ColorCalibration();
+  int target = (black + white) * 0.5;
 
-  tracer.setPwm(10);
+//  tracer.setCollorTarget(target);
+  tracer.setCollorTarget(360);
+  tracer.setPwm(30);
+
+  getStart.run();
 //  tracer.run(14500);
   tracer.walk(14500);
 /*

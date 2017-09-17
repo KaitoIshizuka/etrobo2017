@@ -1,4 +1,8 @@
+#ifndef INCLUDED_WHEELCONTROLL
+#define INCLUDED_WHEELCONTROLL
 #include "WheelCtrl.h"
+#endif
+
 
 using namespace ev3api;
 

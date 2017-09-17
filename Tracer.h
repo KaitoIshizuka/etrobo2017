@@ -15,6 +15,7 @@ class Tracer {
 		void terminate();
 		float alpaca_value();
 		void setPwm(int8_t setValue);
+		void setCollorTarget(int target);
 
 	private:
 		Motor leftWheel;

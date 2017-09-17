@@ -1,7 +1,7 @@
 #include "Calibration.h"
 
 Calibration::Calibration():
-  colorSensor(PORT_2),clock(),touchSensor(PORT_1){
+  colorSensor(PORT_3),clock(),touchSensor(PORT_1){
   init_f("Calibration");
 }
 
@@ -28,7 +28,7 @@ int8_t Calibration::getBrightness(){
 
   for(i=0; i<10; i++){//tempの要素数だけ回る
 	for(j=0; j<=flg; j++){//グループの数だけ回る グループを見回って追加のみ行う
-	  if((group[j]-5) < temp[i] && temp[i] < (group[j]+5)){//もし似たグループがあれば
+	  if((group[j]-5) < temp[i] && temp[i] < (group[j]+5) && group_in_flg == 0){//もし似たグループがあれば
 		//グループの値と光センサの値の一つの平均を取る。
 		group[j] += temp[i];
 		group[j] /= 2;
@@ -64,9 +64,9 @@ int8_t Calibration::getBrightness(){
 }
 
 
-int8_t Calibration::getColor(){
+int Calibration::getColor(){
   int temp[10]={0};
-  int group[10]={0};
+  int group[11]={0};
   int color;
   rgb_raw_t rgb;
 
@@ -81,14 +81,20 @@ int8_t Calibration::getColor(){
 	temp[i] = rgb.r + rgb.g + rgb.b;
   }
 
+  while(1){//タッチセンサが離されるまで待機
+	clock.wait(20);
+	if(false == touchSensor.isPressed()){break;}
+  }
+ 
+
   int flg=0;
   int group_in_flg=0;
-  int number_of_group[10]={0};//各groupの要素数を持っとく
+  int number_of_group[11]={0};//各groupの要素数を持っとく
   int i=0,j=0,k=0;
 
   for(i=0; i<10; i++){//tempの要素数だけ回る
-	for(j=0; j<=flg; j++){//グループの数だけ回る グループを見回って追加のみ行う
-	  if((group[j]-10) < temp[i] && temp[i] < (group[j]+10)){//もし似たグループがあれば
+	for(j=0; j<flg; j++){//グループの数だけ回る 既存グループへの追加のみ行う
+	  if((group[j]-10) <= temp[i] && temp[i] <= (group[j]+10) && group_in_flg == 0){//もし似たグループがあれば
 		//グループの値と光センサの値の一つの平均を取る。
 		group[j] += temp[i];
 		group[j] /= 2;
@@ -107,15 +113,13 @@ int8_t Calibration::getColor(){
   }
 
 
-  for(i=0; 0 < group[i]; i++){//要素の入ったgroupの要素数だけ回る
-	msg_f(group[i],i+3);
-  }
 
-
-  int8_t soeji_of_maxnumber=0;
-  for(k=0; k<=flg; k++){//number_of_groupから各groupの要素数最大の値を返す
-	if(number_of_group[k] > soeji_of_maxnumber){
+  int soeji_of_maxnumber=0;
+  int max_number_of_group = 0;
+  for(k=0; k<flg; k++){//number_of_groupから各groupの要素数最大の値を返す
+	if(number_of_group[k] > max_number_of_group){
 	  soeji_of_maxnumber = k;
+	  max_number_of_group = number_of_group[k];
 	}
   }
 
@@ -127,4 +131,26 @@ int8_t Calibration::getColor(){
   return color;
 }
 
+
+int Calibration::ColorCalibration(){
+  rgb_raw_t rgb;
+  rgb.r = 0;
+  rgb.g = 0;
+  rgb.b = 0;
+
+  while(1){//タッチセンサが押されるまで待機
+	clock.wait(20);
+	if(true == touchSensor.isPressed()){break;}
+  }
+  while(1){//タッチセンサが離されるまで待機
+	clock.wait(20);
+	if(false == touchSensor.isPressed()){break;}
+  }
+ 
+  colorSensor.getRawColor(rgb);
+  int color = rgb.r + rgb.g + rgb.b;
+  msg_f(color,2);
+
+  return color;
+}
 

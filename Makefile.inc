@@ -13,6 +13,7 @@ APPL_CXXOBJS += \
 	plaBoard.o\
 	SumouMove.o\
 	ItemMove.o\
+	GetStart.o\
 
 SRCLANG := c++
 

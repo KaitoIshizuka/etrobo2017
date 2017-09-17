@@ -1,7 +1,7 @@
 #include "pidCtrl.h"
 
 pidCtrl::pidCtrl():
-  colorSensor(PORT_2),wheelCtrl(){
+  colorSensor(PORT_3),wheelCtrl(){
 	LineRL = 0;//0:line の Right 側を走行
 	diff[0]=0,diff[1]=0;
 	diff_color[0]=0,diff_color[1]=0;
@@ -146,3 +146,7 @@ float pidCtrl::calcMotorPid(){
   return turn;
 }
 
+
+void pidCtrl::setCollorTarget(int target){
+  target_val_color = target;
+}

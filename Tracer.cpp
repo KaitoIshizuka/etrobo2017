@@ -6,7 +6,6 @@ leftWheel(PORT_C),
 rightWheel(PORT_B),
 pidctrl(),
 clock(){
-	
 }
 
 void Tracer::init(){
@@ -135,4 +134,8 @@ void Tracer::keisoku(int distance){
 
 	clock.wait(2);
   }
+}
+
+void Tracer::setCollorTarget(int target){
+  pidctrl.setCollorTarget(target);
 }

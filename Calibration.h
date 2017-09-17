@@ -3,15 +3,14 @@
 #include "util.h"
 #include "Clock.h"
 
-using ev3api::ColorSensor;
-using ev3api::TouchSensor;
-using ev3api::Clock;
+using namespace ev3api;
 
 class Calibration {
   public:
 	Calibration();
 	int8_t getBrightness();
-	int8_t getColor();
+	int getColor();
+	int ColorCalibration();
   private:
 	ColorSensor colorSensor;
 	TouchSensor touchSensor;
