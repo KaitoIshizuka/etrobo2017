@@ -3,8 +3,6 @@
 #include "Tracer.h"
 #include "Calibration.h"
 #include "Clock.h"
-#include "plaBoard.h"
-#include "ItemMove.h"
 #include "GetStart.h"
 
 // 一時的に
@@ -16,8 +14,6 @@ using namespace ev3api;
 Tracer tracer;
 Clock clock;
 Calibration cab;
-plaBoard plaBoard;
-ItemMove IM;
 GetStart getStart;
 
 void main_task(intptr_t unused){
@@ -30,25 +26,67 @@ void main_task(intptr_t unused){
   */
   tracer.init();
   //  cab.getBrightness();
-  int black = cab.ColorCalibration();
-  int white = cab.ColorCalibration();
-  int target = (black + white) * 0.5;
+  int black = cab.getColor();
+  int white = cab.getColor();
+  int target = (black + white) * 0.48;
 
-//  tracer.setCollorTarget(target);
-  tracer.setCollorTarget(360);
-  tracer.setPwm(30);
+  tracer.setCollorTarget(target);
 
-  getStart.run();
+  getStart.run();//スタート
+
 //  tracer.run(14500);
-  tracer.walk(14500);
 /*
+  //↓ Lコース
+  tracer.setRL(1);//0:右エッジ, 1:左エッジ
+  tracer.setStraight(1);
   tracer.setPwm(100);
   tracer.run(3000);
+
+  tracer.setStraight(0);
+  tracer.setPwm(70);
+  tracer.run(12100);
+
+  tracer.setStraight(1);
+  tracer.setPwm(100);
+  tracer.run(14100);
+  //↑ Lコース
+*/
+
+
+  //↓ Rコース
+  target = (black + white) * 0.47;
+  tracer.setCollorTarget(target);
+
+
+  tracer.setRL(1);//0:右エッジ, 1:左エッジ
+  tracer.setStraight(1);
+  tracer.setPwm(100);
+  tracer.run(3000);
+
+  target = (black + white) * 0.45;
+  tracer.setCollorTarget(target);
+  tracer.setStraight(0);
   tracer.setPwm(70);
   tracer.run(12500);
+
+  target = (black + white) * 0.47;
+  tracer.setCollorTarget(target);
+  tracer.setStraight(1);
   tracer.setPwm(100);
   tracer.run(14500);
-*/
+  //↑ Rコース
+  
+
+
+  tracer.terminate();
+  clock.wait(2000);
+  // 期待回収用
+  tracer.setCollorTarget(target+30);
+  tracer.setStraight(1);
+  tracer.setPwm(50);
+  tracer.run(17500);
+
+
   tracer.terminate();
 	//plaBoard.init();
 	//IM.run();

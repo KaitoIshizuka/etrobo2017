@@ -92,9 +92,20 @@ float pidCtrl::calcColorWalkPid(){
 
   integral += (diff_color_walk[0] + diff_color_walk[1]) / 2.0 * delta_t;
 
-  p = Kp_color_walk * diff_color_walk[1];
-  i = Ki_color_walk * integral;
-  d = Kd_color_walk * (diff_color_walk[1] - diff_color_walk[0]) / delta_t;
+  if(isStraight == 1){//ストレート
+	p = Kp_color_walk_st * diff_color_walk[1];
+	i = Ki_color_walk_st * integral;
+	d = Kd_color_walk_st * (diff_color_walk[1] - diff_color_walk[0]) / delta_t;
+  }else if(isStraight == 0){//カーブ
+	p = Kp_color_walk_cv * diff_color_walk[1];
+	i = Ki_color_walk_cv* integral;
+	d = Kd_color_walk_cv * (diff_color_walk[1] - diff_color_walk[0]) / delta_t;
+  }else{
+	p = 0;
+	i = 0;
+	d = 0;
+  }
+ 
 
   turn = p + i + d;
 
@@ -149,4 +160,8 @@ float pidCtrl::calcMotorPid(){
 
 void pidCtrl::setCollorTarget(int target){
   target_val_color = target;
+}
+
+void pidCtrl:: setStraight(int isstraight){
+  isStraight = isstraight;
 }

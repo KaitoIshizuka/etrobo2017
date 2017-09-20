@@ -74,18 +74,17 @@ int Calibration::getColor(){
 	clock.wait(20);
 	if(true == touchSensor.isPressed()){break;}
   }
+  while(1){//タッチセンサが離されるまで待機
+	clock.wait(20);
+	if(false == touchSensor.isPressed()){break;}
+  }
+ 
 
   for(int i=0; i<10; i++){
 	clock.wait(20);
 	colorSensor.getRawColor(rgb);
 	temp[i] = rgb.r + rgb.g + rgb.b;
   }
-
-  while(1){//タッチセンサが離されるまで待機
-	clock.wait(20);
-	if(false == touchSensor.isPressed()){break;}
-  }
- 
 
   int flg=0;
   int group_in_flg=0;
@@ -94,7 +93,7 @@ int Calibration::getColor(){
 
   for(i=0; i<10; i++){//tempの要素数だけ回る
 	for(j=0; j<flg; j++){//グループの数だけ回る 既存グループへの追加のみ行う
-	  if((group[j]-10) <= temp[i] && temp[i] <= (group[j]+10) && group_in_flg == 0){//もし似たグループがあれば
+	  if((group[j]-20) <= temp[i] && temp[i] <= (group[j]+20) && group_in_flg == 0){//もし似たグループがあれば
 		//グループの値と光センサの値の一つの平均を取る。
 		group[j] += temp[i];
 		group[j] /= 2;

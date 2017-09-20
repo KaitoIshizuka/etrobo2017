@@ -18,6 +18,7 @@ class pidCtrl {
 	float calcMotorPid();
 	void setLineRL(int setRL);
 	void setCollorTarget(int target);
+	void setStraight(int isStraight);
   private:
 	int LineRL;
 	ColorSensor colorSensor;
@@ -32,12 +33,19 @@ class pidCtrl {
 	const float Ki_color = 0.1;
 //	const float Kd_color = 0.006;
 	const float Kd_color = 0.003;
-//	const float Kp_color_walk = 0.14;
-	const float Kp_color_walk = 0.14;
-//	const float Ki_color_walk = 0.00;
-	const float Ki_color_walk = 0.00;
-//	const float Kd_color_walk = 0.005;
-	const float Kd_color_walk = 0.000;
+
+//	const float Kp_color_walk_st = 0.05;
+//	const float Kd_color_walk_st = 0.005;
+	const float Kp_color_walk_st = 0.001;
+	const float Ki_color_walk_st = 0.0;
+	const float Kd_color_walk_st = 0.001;
+
+//	const float Kp_color_walk_cv = 0.19;
+//	const float Ki_color_walk_cv = 0.020;
+//	const float Kd_color_walk_cv = 0.005;
+	const float Kp_color_walk_cv = 0.19;
+	const float Ki_color_walk_cv = 0.010;
+	const float Kd_color_walk_cv = 0.005;
 	int diff[2];
 	int diff_color[2];
 	int diff_color_walk[2];
@@ -47,5 +55,6 @@ class pidCtrl {
 	unsigned int target_val = 20;
 //	unsigned int target_val_color = 360; 本番コースで調整した値
 	unsigned int target_val_color = 260;
+	int isStraight = 1;
 };
 

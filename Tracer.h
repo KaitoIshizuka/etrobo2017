@@ -16,6 +16,8 @@ class Tracer {
 		float alpaca_value();
 		void setPwm(int8_t setValue);
 		void setCollorTarget(int target);
+		void setRL(int RL);
+		void setStraight(int isStraight);
 
 	private:
 		Motor leftWheel;
@@ -23,5 +25,6 @@ class Tracer {
 		pidCtrl pidctrl;
 		Clock clock;
 		int8_t pwm = (Motor::PWM_MAX) / 2;
+		int isStraight;
 };
 

@@ -1,6 +1,5 @@
 #include "Tracer.h"
 
-
 Tracer::Tracer():
 leftWheel(PORT_C),
 rightWheel(PORT_B),
@@ -16,7 +15,6 @@ void Tracer::terminate(){
 	leftWheel.stop();
 	rightWheel.stop();
 }
-
 
 
 void Tracer::setPwm(int8_t setValue) {
@@ -59,6 +57,7 @@ void Tracer::run(int distance){
   }
 }
 
+
 void Tracer::walk(int distance){
   static int run = (rightWheel.getCount() + leftWheel.getCount())/2;
   while(1){ 
@@ -67,12 +66,14 @@ void Tracer::walk(int distance){
 //	float turn = pidctrl.calcPid();
 	float turn = pidctrl.calcColorWalkPid();
 
-	turn *= 0.01;
+
+	turn *= 0.02;
 //	int pwm_l = pwm - turn;
 //	int pwm_R = pwm + turn;
 
 	int pwm_l = pwm * (1.0 - turn);
 	int pwm_R = pwm * (1.0 + turn);
+
 	/*
 	int rate = 0;
 	if(pwm_l > 100){
@@ -138,4 +139,12 @@ void Tracer::keisoku(int distance){
 
 void Tracer::setCollorTarget(int target){
   pidctrl.setCollorTarget(target);
+}
+
+void Tracer::setRL(int RL){
+  pidctrl.setLineRL(RL);
+}
+
+void Tracer::setStraight(int isstraight){
+  isStraight = isstraight;
 }

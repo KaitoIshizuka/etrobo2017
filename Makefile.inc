@@ -5,15 +5,15 @@ APPL_COBJS +=
 APPL_CXXOBJS += \
 	util.o \
 	WheelCtrl.o \
-	ArmMove.o \
-	pidCtrl.o \
-	RightAngleDetection.o \
-	Tracer.o\
 	Calibration.o\
-	plaBoard.o\
-	SumouMove.o\
-	ItemMove.o\
+	pidCtrl.o \
+	Tracer.o\
 	GetStart.o\
+#	ArmMove.o \
+#	RightAngleDetection.o \
+#	plaBoard.o\
+#	SumouMove.o\
+#	ItemMove.o\
 
 SRCLANG := c++
 
